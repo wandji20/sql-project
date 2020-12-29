@@ -264,9 +264,11 @@ SELECT id,stadium,team1,team2
 SELECT player, teamid, stadium, mdate
   FROM game JOIN goal ON (goal.matchid=game.id) WHERE teamid = 'GER';
 /* 4  */
-
+SELECT team1, team2, player FROM game JOIN goal ON (goal.matchid=game.id) WHERE player like 'Mario%'
 /* 5  */
-
+SELECT player, teamid, coach, gtime
+  FROM goal JOIN eteam on teamid=id
+ WHERE gtime<=10
 /* 6  */
 
 /* 7  */
