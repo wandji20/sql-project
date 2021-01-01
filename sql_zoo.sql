@@ -454,7 +454,7 @@ Table-B
 A Bronx Tale	1993
 Bang the Drum Slowly	1973
 Limitless	2011
-/* Using 1  */
+/* Using NULL  1  */
 SELECT name FROM teacher WHERE dept IS NULL
 /*  2 */
 SELECT teacher.name, dept.name
@@ -512,3 +512,68 @@ Spiregrain	Other
 Cutflower	Other
 Deadyawn	Other
 
+
+/*  SELF JOIN 1  */
+
+/* 2  */
+
+/* 3  */
+
+/* 4  */
+
+/* 5  */
+
+/* 6  */
+
+/* 7  */
+SELECT DISTINCT a.company, a.num FROM route a JOIN route b ON a.num=b.num WHERE a.stop=115 AND b.stop = 137 
+/*  8 */
+SELECT distinct a.company, a.num
+FROM route a JOIN route b ON 
+(a.num = b.num)
+join stops stopa on (a.stop=stopa.id)
+join stops stopb on (b.stop=stopb.id) WHERE stopa.name= 'Craiglockhart' AND stopb.name='Tollcross'
+/* 9  */
+SELECT stopb.name, a.company, a.num 
+  FROM route a JOIN route b 
+                 ON (a.num=b.num AND a.company=b.company) 
+               JOIN  stops stopa ON (stopa.id=a.stop) 
+               JOIN stops stopb ON (stopb.id=b.stop) 
+               WHERE stopa.name= 'Craiglockhart'
+/* 10  */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
+
+/*   */
