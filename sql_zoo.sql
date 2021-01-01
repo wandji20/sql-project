@@ -1,4 +1,4 @@
-/* Exercise 1   no 1  */
+/* SELECT basics  no 1  */
 SELECT population FROM world
   WHERE name = 'Germany'
 /* 2  */
@@ -33,7 +33,48 @@ SELECT name, area, population
 SELECT name, population/area
   FROM world
  WHERE name IN ('China', 'Nigeria', 'France', 'Australia')
-/*Exercise 2   no 1   */
+ /* SELECT NAMES 1   */
+SELECT name FROM world
+  WHERE name LIKE 'Y%'
+/* 2  */
+SELECT name FROM world
+  WHERE name LIKE '%Y'
+/*  3 */
+SELECT name FROM world
+  WHERE name LIKE '%x%' 
+/*  4 */
+SELECT name FROM world
+  WHERE name LIKE '%land'
+/* 5  */
+SELECT name FROM world
+  WHERE name LIKE 'c%' AND name LIKE '%ia'
+/*  6 */
+SELECT name FROM world
+  WHERE name LIKE '%oo%'
+/* 7  */
+SELECT name FROM world
+  WHERE name LIKE '%a%a%a%'
+/* 8  */
+SELECT name FROM world
+ WHERE name LIKE '_t%'
+ORDER BY name
+/* 9  */
+SELECT name FROM world
+ WHERE name LIKE '%o__o%'
+/*  10 */
+SELECT name FROM world
+WHERE LENGTH(name)=4
+/* 11  */
+SELECT a.name FROM world a JOIN world b ON a.name=b.capital
+/* 12  */
+SELECT name FROM world WHERE capital = CONCAT(name,' City')
+/*  13 */
+SELECT capital, name FROM world WHERE capital LIKE CONCAT(name, '%')
+/* 14  */
+SELECT capital, name FROM world WHERE capital LIKE CONCAT(name, '%') AND LENGTH(name)< LENGTH(capital)
+/* 15  */
+SELECT name, REPLACE(capital, name, '') FROM world WHERE capital LIKE CONCAT(name, '%') AND LENGTH(name)< LENGTH(capital)
+/* SELECT FROM world  no 1   */
 SELECT name, continent, population FROM world;
 /* 2  */
 SELECT name
@@ -67,7 +108,7 @@ SELECT name FROM world
     AND name LIKE '%i%'
     AND name LIKE '%o%'
     AND name LIKE '%u%';
-/* quiz 2  */
+/* quiz 1  */
 SELECT name
   FROM world
  WHERE name LIKE 'U%'
@@ -89,7 +130,7 @@ SELECT name FROM world
 /* 7  */
 Brazil
 Colombia
-/* Exercise 3  no 1  */
+/* SELECT from nobel  no 1  */
 SELECT yr, subject, winner
   FROM nobel
  WHERE yr = 1950;
@@ -129,7 +170,7 @@ SELECT winner, subject
   FROM nobel
  WHERE yr=1984
  ORDER BY subject IN ('Physics','Chemistry'), subject, winner;
-/* Quiz no 3  */
+/* Quiz 1  */
 SELECT winner FROM nobel
  WHERE winner LIKE 'C%' AND winner LIKE '%n'
 /* 2  */
@@ -160,7 +201,7 @@ SELECT DISTINCT yr
                   WHERE subject='Literature')
    AND yr NOT IN (SELECT yr FROM nobel
                    WHERE subject='Peace')
-/* Exercise 4   no 1  */
+/* SELECT WITHIN SELECT 1  */
 SELECT name FROM world
   WHERE population >
      (SELECT population FROM world
@@ -192,7 +233,7 @@ SELECT continent, name FROM world x WHERE name <= ALL(SELECT name FROM world y W
 SELECT name, continent, population FROM world x WHERE 25000000>=ALL(SELECT population FROM world y WHERE x.continent = y.continent )
 /* 10  */
 SELECT name, continent FROM world x WHERE population/3>=ALL(SELECT population FROM world y WHERE x.continent = y.continent AND population IS NOT NULL AND x.name <> y.name ) AND population IS NOT NULL;
-/* QUIZ 4   no 1   */
+/* QUIZ  1 */
  SELECT region, name, population FROM bbc x WHERE population <= ALL (SELECT population FROM bbc y WHERE y.region=x.region AND population>0)
 /* 2  */
  SELECT name,region,population FROM bbc x WHERE 50000 < ALL (SELECT population FROM bbc y WHERE x.region=y.region AND y.population>0)
@@ -217,7 +258,7 @@ Table-B
 Bangladesh
 India
 Pakistan
-/* Exercise 5  no 1   */
+/* SUM AND COUNT 1   */
 SELECT SUM(population)
 FROM world
 /* 2  */
@@ -234,7 +275,7 @@ SELECT continent, COUNT(DISTINCT name) FROM world GROUP BY continent;
 SELECT continent, COUNT(DISTINCT name) FROM world WHERE population > 10000000 GROUP BY continent;
 /* 8  */
 SELECT continent FROM world  GROUP BY continent HAVING SUM(population)>100000000;
-/* Quiz  no 1  */
+/* Quiz  1  */
  SELECT name, population FROM bbc WHERE region = 'Europe'
 /* 2  */
  SELECT COUNT(name) FROM bbc WHERE population < 150000
@@ -254,7 +295,7 @@ Americas	732240
 Middle East	13403102
 South America	17740392
 South Asia	9437710
-/* Exercise 6   no 1 */
+/* JOIN 1 */
 SELECT matchid, player FROM goal 
   WHERE teamid = 'GER'
 /* 2  */
@@ -299,166 +340,3 @@ team2,
 SUM(CASE WHEN teamid=team2 THEN 1 ELSE 0 END) AS score2
   FROM game LEFT JOIN goal ON matchid = id
 GROUP BY mdate, team1, team2 ORDER BY mdate,matchid,team1,team2
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
-
-/*   */
