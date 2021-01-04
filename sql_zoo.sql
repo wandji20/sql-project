@@ -630,8 +630,43 @@ SELECT constituency,party, votes, RANK() OVER (PARTITION BY constituency ORDER B
  WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
    AND yr  = 2017
 ORDER BY posn, constituency
-
-
 /* 5  */
-
+SELECT constituency,party
+  FROM (SELECT constituency,party, votes, RANK() OVER (PARTITION BY constituency ORDER BY votes DESC ) AS posn
+          FROM ge
+            WHERE constituency BETWEEN 'S14000021' AND 
+             'S14000026' AND yr  = 2017
+           ORDER BY constituency,votes DESC) AS filtered
+WHERE filtered.posn = 1
 /* 6  */
+select party,count(*) from (select constituency,party,
+      RANK() OVER (PARTITION BY constituency ORDER BY votes DESC) as posn
+  FROM ge WHERE constituency Like'S%'
+   AND yr  = 2017
+ORDER BY constituency,votes DESC
+) AS x
+where x.posn = 1 
+group by party
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
